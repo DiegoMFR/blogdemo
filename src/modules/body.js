@@ -3,10 +3,12 @@ import BlogPost from '../components/blogpost'
 class Body extends Component {
   render() {
     return (
-      <div>
-          <BlogPost/>
-          <BlogPost/>
-          <BlogPost/>
+      <div className="blog__body">
+        <div className="blog__body__container">
+          <BlogPost />
+          <BlogPost />
+          <BlogPost />
+        </div>
       </div>
     )
   }

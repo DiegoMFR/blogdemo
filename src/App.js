@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.scss';
 import Header from './modules/header'
 import Body from './modules/body'
 import Footer from './modules/footer'
@@ -7,7 +7,7 @@ import Footer from './modules/footer'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="blog">
         <Header/>
         <Body/>
         <Footer/>
