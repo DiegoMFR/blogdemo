@@ -4,7 +4,18 @@ class Footer extends Component {
     return (
       <div className="blog__footer">
         <div className="blog__footer__container">
-          footer
+          <h1>
+            BLOGZILLA
+          </h1>
+          <h4>
+            <a href="#">
+              About
+            </a>
+            &nbsp; | &nbsp;
+            <a href="#">
+              Carreers
+            </a>
+          </h4>
         </div>
       </div>
     )

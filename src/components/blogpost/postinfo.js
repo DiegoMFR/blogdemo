@@ -8,7 +8,7 @@ class PostInfo extends Component {
           {dateCreated}
         </div>
         <div>
-          {readTime}
+          {readTime} read
         </div>
       </aside>)
   }

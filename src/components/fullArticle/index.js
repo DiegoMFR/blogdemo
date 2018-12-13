@@ -3,12 +3,12 @@ import PostInfo from './postinfo'
 import ButtonGroup from '../buttonGroup'
 import Actions from '../../data/actions'
 
-class BlogPost extends Component {
+class FullArticle extends Component {
   constructor(props) {
     super(props);
     const buttonGroupModel = {
       items: [
-        { label: 'Read More...', onClick: this.handleRead },
+        { label: 'Edit', onClick: this.handleEdit },
         { label: 'Delete', onClick: this.handleDelete },
       ]
     }
@@ -34,8 +34,8 @@ class BlogPost extends Component {
         </span>
         <img className="blog__body__post__img" alt="img1" src={require(`../../images/${imageName}`)}/>
         </section>
-        <section className="blog__body__post__textbody">
-          <div className="truncated-text">
+        <section>
+          <div>
             {body}
           </div>
         </section>
@@ -44,4 +44,4 @@ class BlogPost extends Component {
     )
   }
 }
-export default BlogPost
+export default FullArticle

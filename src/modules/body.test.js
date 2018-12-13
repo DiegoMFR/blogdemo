@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Body from './body';
 
-it('renders without crashing', () => {
+it('renders with empty data', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App postList={[]} />, div);
+  ReactDOM.render(<Body data={[]}/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
