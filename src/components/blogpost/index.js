@@ -1,29 +1,47 @@
-import React, { Component } from 'react';
-import PostInfo from './postinfo';
+import React, { Component } from 'react'
+import PostInfo from './postinfo'
+import ButtonGroup from '../buttonGroup'
+import Actions from '../../data/actions'
+
 class BlogPost extends Component {
-  constructor() {
-    super();
-    this.imageName = 'post.png';
+  constructor(props) {
+    super(props);
+    const buttonGroupModel = {
+      items: [
+        { label: 'Read More...', onClick: this.handleRead },
+        { label: 'Delete', onClick: this.handleDelete },
+      ]
+    }
+    this.state = { buttonGroupModel };
+  }
+
+  handleDelete = () => {
+    const { content: { id } } = this.props;
+    Actions.removePost(id);
   }
   render() {
+    const { content: { imageName, title, body, readTime, dateCreated } } = this.props;
+    const { buttonGroupModel } = this.state;
+    const postInfoModel = { readTime, dateCreated }
     return (
       <article>
         <section className="blog__body__post">
         <span className="flex-row">
           <h1>
-            Cool Blog Post
+            {title}
           </h1>
-          <PostInfo />
+          <PostInfo model={postInfoModel}/>
         </span>
-        <img className="blog__body__post__img" alt="img1" src={require(`../../images/${this.imageName}`)}/>
+        <img className="blog__body__post__img" alt="img1" src={require(`../../images/${imageName}`)}/>
         </section>
         <section>
           <div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              {body}
             </p>
           </div>
         </section>
+        <ButtonGroup model={buttonGroupModel} />
       </article>
     )
   }

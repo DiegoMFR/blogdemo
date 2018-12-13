@@ -4,16 +4,16 @@ import Header from './modules/header'
 import Body from './modules/body'
 import Footer from './modules/footer'
 
-class App extends Component {
-  render() {
+function App(props) {
+ 
+    const { postList } = props;
     return (
       <div className="blog">
         <Header/>
-        <Body/>
+        <Body data={postList}/>
         <Footer/>
       </div>
-    );
-  }
+    )
 }
 
 export default App;

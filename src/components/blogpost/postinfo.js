@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 class PostInfo extends Component {
   render() {
+    const { model: { readTime, dateCreated } } = this.props;
     return (
       <aside className="blog__body__postinfo">
         <div>
-          14 Dec 2018
+          {dateCreated}
         </div>
         <div>
-          5 min read.
+          {readTime}
         </div>
       </aside>)
   }
