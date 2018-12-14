@@ -15,7 +15,7 @@ function App(props) {
 
   return (
     <Router>
-      <div>
+      <div className="main">
         <Route exact path="/" render={() => (
           <Blog postList={postList} />
         )} />

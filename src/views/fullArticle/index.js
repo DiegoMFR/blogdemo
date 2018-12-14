@@ -3,6 +3,7 @@ import PostInfo from '../components/blogpost/postinfo'
 import ButtonGroup from '../components/buttonGroup'
 import Actions from '../../data/actions'
 import { withRouter } from 'react-router-dom'
+import Header from '../blog/header'
 
 class FullArticle extends Component {
   constructor(props) {
@@ -23,14 +24,16 @@ class FullArticle extends Component {
   }
 
   handleDelete = () => {
+    const { history } = this.props;
     const { post: { id } } = this.props;
     Actions.removePost(id);
+    history.push('/');
   }
 
   handleEdit = () => {
     this.setState({ editMode: true });
   }
-  
+
   handleSave = () => {
     const { history, post: { id } } = this.props;
     const { imageName, title, body, readTime, dateCreated } = this.state;
@@ -65,25 +68,29 @@ class FullArticle extends Component {
     const { imageName, title, body, readTime, dateCreated, editMode } = this.state;
     const postInfoModel = { readTime, dateCreated }
     return (
-      <article>
-        <section className="blog__body__post">
-          <span className="flex-row">
-            <h1>
+      <article className="fullarticle">
+        <Header readMode />
+        <div className="fullarticle__body">
+          <section className="fullarticle__body__container">
+            <span className="flex-row">
+              <h1>
+                {editMode ?
+                  <input id="titleInput" className="editorinput" value={title} onChange={evt => this.updateValue(evt)} /> :
+                  <div> {title} </div>}
+              </h1>
+              <PostInfo model={postInfoModel} />
+            </span>
+            <img className="fullarticle__body__container__img" alt="img1" src={require(`../../images/${imageName}`)} />
+          </section>
+          <section className="fullarticle__body__container">
+            <div className="fullarticle__body__container__textbody">
               {editMode ?
-                <input id="titleInput" value={title} onChange={evt => this.updateValue(evt)} /> :
-                <div> {title} </div>}
-            </h1>
-            <PostInfo model={postInfoModel} />
-          </span>
-          <img className="blog__body__post__img" alt="img1" src={require(`../../images/${imageName}`)} />
-        </section>
-        <section>
-          {editMode ?
-            <textarea id="bodyInput" value={body} onChange={evt => this.updateValue(evt)} /> :
-            <div> {body} </div>}
-
-        </section>
-        <ButtonGroup model={this.buildButtonGroupModel()} />
+                <textarea id="bodyInput" className="editorinput" value={body} onChange={evt => this.updateValue(evt)} /> :
+                <div> {body} </div>}
+            </div>
+            <ButtonGroup model={this.buildButtonGroupModel()} />
+          </section>
+        </div>
       </article>
     )
   }
