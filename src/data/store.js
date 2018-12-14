@@ -10,7 +10,7 @@ class Store extends ReduceStore {
   getInitialState() {
     return  [
       {
-        id: 1,
+        id: 111,
         title: 'Cool Post',
         dateCreated: ' 14 Dec 2018',
         readTime: '5 min',
@@ -18,7 +18,7 @@ class Store extends ReduceStore {
         imageName: 'post.png',
       },
       {
-        id: 2,
+        id: 112,
         title: 'Another Post Here!',
         dateCreated: ' 13 Dec 2018',
         readTime: '7 min',
@@ -32,6 +32,10 @@ class Store extends ReduceStore {
     switch (action.type) {
       case ActionTypes.REMOVE_POST:
         return state.filter(({ id }) => id !== action.id);
+      case ActionTypes.ADD_POST:
+        const rest = state.filter(({ id }) => id !== action.postData.id);
+        const edited = state.find(({ id }) => id === action.postData.id);
+        return [...rest, { ...edited, ...action.postData }];
       default:
         return state;
     }

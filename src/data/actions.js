@@ -7,6 +7,12 @@ const Actions = {
       type: ActionTypes.REMOVE_POST,
       id,
     })
+  },
+  addPost(postData) {
+    Dispatcher.dispatch({
+      type: ActionTypes.ADD_POST,
+      postData,
+    })
   }
 };
 

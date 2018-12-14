@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ButtonGroup from '../buttonGroup';
+import { withRouter } from 'react-router-dom'
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -10,6 +11,11 @@ class AddNewPost extends Component {
       ]
     }
     this.state = { buttonGroupModel };
+  }
+
+  handleAdd = () => {
+    const { history } = this.props;
+    history.push(`/add`);
   }
 
   render() {
@@ -29,4 +35,4 @@ class AddNewPost extends Component {
       </article>)
   }
 }
-export default AddNewPost;
+export default withRouter(AddNewPost);

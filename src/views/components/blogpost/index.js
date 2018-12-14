@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import PostInfo from './postinfo'
 import ButtonGroup from '../buttonGroup'
-import Actions from '../../data/actions'
+import Actions from '../../../data/actions'
+import { withRouter } from 'react-router-dom'
 
-class FullArticle extends Component {
+class BlogPost extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     const buttonGroupModel = {
       items: [
-        { label: 'Edit', onClick: this.handleEdit },
+        { label: 'Read More...', onClick: this.handleRead },
         { label: 'Delete', onClick: this.handleDelete },
       ]
     }
@@ -19,10 +21,14 @@ class FullArticle extends Component {
     const { content: { id } } = this.props;
     Actions.removePost(id);
   }
+  handleRead = () => {
+    const { history, content: { id } } = this.props;
+    history.push(`/read/${id}`);
+  }
   render() {
     const { content: { imageName, title, body, readTime, dateCreated } } = this.props;
     const { buttonGroupModel } = this.state;
-    const postInfoModel = { readTime, dateCreated }
+    const postInfoModel = { readTime, dateCreated };
     return (
       <article>
         <section className="blog__body__post">
@@ -32,10 +38,10 @@ class FullArticle extends Component {
           </h1>
           <PostInfo model={postInfoModel}/>
         </span>
-        <img className="blog__body__post__img" alt="img1" src={require(`../../images/${imageName}`)}/>
+        <img className="blog__body__post__img" alt="img1" src={require(`../../../images/${imageName}`)}/>
         </section>
-        <section>
-          <div>
+        <section className="blog__body__post__textbody">
+          <div className="truncated-text">
             {body}
           </div>
         </section>
@@ -44,4 +50,4 @@ class FullArticle extends Component {
     )
   }
 }
-export default FullArticle
+export default withRouter(BlogPost)
